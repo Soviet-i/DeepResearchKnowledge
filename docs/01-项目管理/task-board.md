@@ -30,7 +30,7 @@
 
 
 
-bash
+```bash
 
 1\) 克隆仓库（首次）
 
@@ -61,7 +61,7 @@ git commit -m "<module>: 简要描述"
 
 
 git push -u origin <name>/<module>
-
+```
 
 
 
