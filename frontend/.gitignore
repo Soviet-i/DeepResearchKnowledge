@@ -1,63 +1,24 @@
-# 依赖目录
-node_modules/
-pnpm-lock.yaml
-yarn.lock
-
-# 构建输出
-dist/
-dist-ssr/
-*.local
-
-# 日志文件
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# 编辑器文件
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea/
+.idea
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# 环境文件
-.env
-.env.local
-.env.*.local
-
-# 测试相关
-coverage/
-.nyc_output
-
-# 生产文件
-*.prod.*
-*.min.*
-
-# 调试文件
-debug.log
-*.log
-
-# 操作系统文件
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# 备份文件
-*.bak
-*.tmp
-*.temp
-
-# 证书文件
-*.pem
-*.crt
-*.key
-
-# 配置文件
-*.config.js
-*.config.ts

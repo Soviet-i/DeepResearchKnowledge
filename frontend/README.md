@@ -1,158 +1,216 @@
-# 深知DeepResearch - 前端项目
+# Deep Research - 学术研究助手
 
-智能科研助手前端项目
+一个基于React+TypeScript的学术研究助手，帮助用户搜索学术文献、生成研究报告。
 
+## 项目特性
 
+- 📚 文献搜索与筛选
+- 📝 多种类型研究报告生成（综述、详细分析、对比研究）
+- 📊 研究数据可视化
+- 🎨 响应式设计，支持多种设备
+- 🌓 深色/浅色主题切换
+- 🌐 多语言支持
 
+## 技术栈
 
+- **前端框架**: React 18+
+- **类型系统**: TypeScript
+- **构建工具**: Vite
+- **样式框架**: Tailwind CSS
+- **路由**: React Router
+- **动画**: Framer Motion
+- **图表**: Recharts
+- **通知**: Sonner
+- **数据验证**: Zod
 
-##### 前端架构第一周成果
+## 环境准备
 
- 前端架构完成了基础框架搭建，为团队开发打下坚实基础！
+在运行项目之前，请确保您的计算机已安装以下软件：
 
+- **Node.js**: 推荐 v16.0 或更高版本
+- **包管理器**: npm、yarn 或 pnpm（至少安装一种）
 
+### 检查 Node.js 版本
 
- 已完成功能
+```bash
+node -v
+```
 
- Vue 3 + TypeScript + Vite 现代化项目框架
+如果您还没有安装 Node.js，可以从 [Node.js 官方网站](https://nodejs.org/) 下载并安装。
 
+## 运行项目
 
+### 方法一：使用 npm（推荐，大多数用户的默认选择）
 
- Element Plus UI组件库集成
+1. 安装依赖
 
+```bash
+npm install
+```
 
+2. 启动开发服务器
 
- Vue Router路由系统配置
+```bash
+npm run dev
+```
 
+3. 打开浏览器访问
 
+开发服务器启动后，打开浏览器并访问以下地址：
+http://localhost:3000
 
- Pinia状态管理基础
+### 方法二：使用 pnpm
 
+如果您希望使用 pnpm 作为包管理器，请按照以下步骤操作：
 
+1. 安装 pnpm（如果尚未安装）
 
- ESLint + Prettier代码规范
+```bash
+npm install -g pnpm
+```
 
+2. 安装依赖
 
+```bash
+pnpm install
+```
 
- 开发/生产双环境配置
+3. 启动开发服务器
 
+```bash
+pnpm dev
+```
 
+### 方法三：使用 yarn
 
- 4个核心页面（首页、登录、注册、404）
+如果您希望使用 yarn 作为包管理器，请按照以下步骤操作：
 
+1. 安装 yarn（如果尚未安装）
 
+```bash
+npm install -g yarn
+```
 
- 生产构建打包优化
+2. 安装依赖
 
+```bash
+yarn install
+```
 
+3. 启动开发服务器
 
- 技术栈
+```bash
+yarn dev
+```
 
-核心框架
+## 构建项目
 
-Vue 3 - 渐进式JavaScript框架
+如果您需要构建生产版本的项目，可以使用以下命令：
 
+### 使用 npm
 
+```bash
+npm run build
+```
 
-TypeScript - 类型安全的JavaScript超集
+### 使用 pnpm
 
+```bash
+pnpm build
+```
 
+### 使用 yarn
 
-Vite - 下一代前端构建工具
+```bash
+yarn build
+```
 
+构建后的文件将位于 `dist` 目录中。
 
+## 项目结构
 
-UI组件
-
-Element Plus - 基于Vue 3的桌面端组件库
-
-
-
-Vue Router 4 - 官方路由管理器
-
-
-
-状态管理
-
-Pinia - Vue官方推荐的状态管理库
-
-
-
-开发工具
-
-ESLint - 代码质量检查
-
-
-
-Prettier - 代码格式化
-
-
-
-Vue-tsc - Vue TypeScript编译器
-
-
-
- 项目结构
-
-text
-
-DeepResearchFrontend/
-
+```
 ├── src/
+│   ├── components/      # 可复用组件
+│   ├── contexts/        # React Context
+│   ├── hooks/           # 自定义 hooks
+│   ├── lib/             # 工具函数和API服务
+│   ├── pages/           # 页面组件
+│   ├── App.tsx          # 应用入口组件
+│   ├── index.css        # 全局样式
+│   └── main.tsx         # 程序入口文件
+├── index.html           # HTML入口
+├── package.json         # 项目依赖配置
+└── vite.config.ts       # Vite配置
+```
 
-│   ├── assets/           # 静态资源
+## 常见问题及解决方案
 
-│   ├── components/       # 可复用组件
+### 问题 1：`pnpm` 不是内部或外部命令，也不是可运行的程序
 
-│   ├── views/           # 页面组件
+**解决方案**：这意味着您的计算机上尚未安装 pnpm。您可以选择：
 
-│   │   ├── HomePage.vue     # 首页
+1. 安装 pnpm：`npm install -g pnpm`
+2. 或者使用 npm：`npm install` 和 `npm run dev`
+3. 或者使用 yarn：`yarn install` 和 `yarn dev`
 
-│   │   ├── auth/           # 认证页面
+### 问题 2：依赖安装失败
 
-│   │   │   ├── LoginPage.vue    # 登录页
+**解决方案**：
+- 检查您的网络连接
+- 尝试使用不同的包管理器
+- 清除包管理器缓存：
+  - npm: `npm cache clean --force`
+  - pnpm: `pnpm store prune`
+  - yarn: `yarn cache clean`
 
-│   │   │   └── RegisterPage.vue # 注册页
+### 问题 3：开发服务器无法启动或端口被占用
 
-│   │   ├── research/      # 研究页面
+**解决方案**：
+- 检查是否有其他程序正在使用 3000 端口
+- 可以尝试修改 `package.json` 中的 `dev:client` 脚本，更改端口号
 
-│   │   │   └── ResearchPage.vue # 研究页
+### 问题 4：页面显示异常或功能不可用
 
-│   │   └── error/         # 错误页面
+**解决方案**：
+- 确保所有依赖都已正确安装
+- 清除浏览器缓存或使用无痕模式
+- 检查控制台错误信息，针对性解决问题
 
-│   │       └── NotFoundPage.vue # 404页
+## 功能使用说明
 
-│   ├── router/           # 路由配置
+### 搜索文献
 
-│   │   └── index.ts
+1. 在首页或导航栏的搜索框中输入关键词
+2. 点击搜索按钮或按回车键
+3. 在搜索结果页面查看相关文献
+4. 可以使用左侧筛选面板进行过滤和排序
 
-│   ├── stores/           # 状态管理
+### 生成研究报告
 
-│   ├── utils/            # 工具函数
+1. 在搜索结果页面选择感兴趣的文献
+2. 页面右下角会出现报告生成选项
+3. 选择所需的报告类型（综述、详细分析、对比研究）
+4. 系统将开始生成报告，完成后可查看、下载或复制报告内容
 
-│   ├── types/            # TypeScript类型定义
+### 偏好设置
 
-│   ├── App.vue           # 根组件
+1. 点击导航栏中的"偏好设置"
+2. 可以调整主题模式、界面语言和通知设置
+3. 设置将自动保存并应用
 
-│   └── main.ts           # 应用入口
+## 开发说明
 
-├── public/               # 公共资源
+如果您想参与项目开发或进行自定义修改，请参考以下说明：
 
-│   └── vite.svg          # 网站图标
+1. 确保您已安装了所有必要的开发依赖
+2. 遵循代码风格和项目结构规范
+3. 在提交代码前进行充分测试
 
-├── package.json          # 项目配置
+## 许可证
 
-├── vite.config.ts        # Vite配置
+本项目采用 MIT 许可证 - 详情请查看 [LICENSE](LICENSE) 文件
 
-├── tsconfig.json         # TypeScript配置
+## 联系我们
 
-├── .eslintrc.cjs         # ESLint配置
-
-├── .prettierrc           # Prettier配置
-
-├── .env.development      # 开发环境变量
-
-├── .env.production       # 生产环境变量
-
-└── index.html            # HTML入口
-
+如果您在使用过程中遇到任何问题或有任何建议，欢迎联系我们。
