@@ -330,7 +330,7 @@ export default function SearchResultsPage() {
         </div>
       </div>
       
-      {/* 生成报告按钮 */}
+       {/* 生成报告按钮 */}
       {!loading && results.length > 0 && selectedPapers.size > 0 && (
         <motion.div 
           className="fixed bottom-6 right-6"
@@ -357,40 +357,6 @@ export default function SearchResultsPage() {
                 }}
               >
                 <i className="fas fa-file-alt mr-2"></i> 生成综述报告
-              </button>
-              <button 
-                className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center text-sm"
-                onClick={() => {
-                  try {
-                    // 保存选中的文献到localStorage
-                    const selectedPapersData = results.filter(paper => selectedPapers.has(paper.id));
-                    localStorage.setItem('selectedPapers', JSON.stringify(selectedPapersData));
-                    // 跳转到报告生成页面
-                    window.location.href = `/report?query=${encodeURIComponent(query)}&reportType=detailed`;
-                  } catch (error) {
-                    console.error('保存选中的文献失败:', error);
-                    alert('保存选中的文献失败，请稍后重试');
-                  }
-                }}
-              >
-                <i className="fas fa-search-plus mr-2"></i> 生成详细报告
-              </button>
-              <button 
-                className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center text-sm"
-                onClick={() => {
-                  try {
-                    // 保存选中的文献到localStorage
-                    const selectedPapersData = results.filter(paper => selectedPapers.has(paper.id));
-                    localStorage.setItem('selectedPapers', JSON.stringify(selectedPapersData));
-                    // 跳转到报告生成页面
-                    window.location.href = `/report?query=${encodeURIComponent(query)}&reportType=comparative`;
-                  } catch (error) {
-                    console.error('保存选中的文献失败:', error);
-                    alert('保存选中的文献失败，请稍后重试');
-                  }
-                }}
-              >
-                <i className="fas fa-exchange-alt mr-2"></i> 生成对比报告
               </button>
             </div>
           </div>
