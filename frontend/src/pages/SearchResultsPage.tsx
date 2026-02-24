@@ -3,6 +3,7 @@ import { Navbar } from '../components/Navbar';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { toast } from 'sonner';
 
 // 定义搜索结果类型
 interface SearchResult {
@@ -16,22 +17,8 @@ interface SearchResult {
   type: 'journal' | 'conference' | 'book' | 'article';
 }
 
-// Mock搜索结果数据
-const generateMockSearchResults = (query: string): SearchResult[] => {
-  const types = ['journal', 'conference', 'book', 'article'] as const;
-  const sources = ['Nature', 'Science', 'IEEE', 'Springer', 'ACM', 'Elsevier'];
-  
-  return Array.from({ length: 8 }, (_, i) => ({
-    id: `result-${i + 1}`,
-    title: `${query}研究：${i + 1}种新方法与应用案例分析`,
-    authors: [`作者${i + 1}-1`, `作者${i + 1}-2`, `作者${i + 1}-3`],
-    publicationYear: 2023 - Math.floor(Math.random() * 5),
-    source: sources[Math.floor(Math.random() * sources.length)],
-    abstract: `本文深入探讨了${query}在多个领域的应用，包括理论基础、实践方法和最新进展。研究发现，通过创新的方法论和技术手段，可以显著提升${query}的应用效果和社会价值。本文还提出了未来研究方向和潜在的应用场景。`,
-    relevanceScore: Math.floor(Math.random() * 40) + 60, // 60-100的相关度
-    type: types[Math.floor(Math.random() * types.length)],
-  }));
-};
+// 导入API函数
+import { searchPapers } from '../lib/api';
 
 // 统计数据
 const generateStatsData = () => {
@@ -55,29 +42,37 @@ export default function SearchResultsPage() {
   const [selectedPapers, setSelectedPapers] = useState<Set<string>>(new Set());
   const statsData = generateStatsData();
 
-  // 模拟搜索请求
+  // 搜索请求 - 调用真实API
   useEffect(() => {
     if (query) {
       setLoading(true);
       
-      // 模拟网络延迟
-      setTimeout(() => {
-        const mockResults = generateMockSearchResults(query);
-        
-        // 根据排序方式排序
-        const sortedResults = [...mockResults].sort((a, b) => {
-          if (sortBy === 'relevance') {
-            return b.relevanceScore - a.relevanceScore;
-          } else {
-            return b.publicationYear - a.publicationYear;
-          }
-        });
-        
-        setResults(sortedResults);
+      // 构建筛选参数
+      const filters = activeFilter ? { type: activeFilter } : undefined;
+      
+      // 调用API搜索文献
+      searchPapers({ 
+        query, 
+        filters,
+        sortBy: sortBy === 'relevance' ? 'relevance' : 'publicationYear',
+        page: 1,
+        pageSize: 10
+      })
+      .then(data => {
+        setResults(data.results || []);
         setLoading(false);
-      }, 1200);
+      })
+      .catch(error => {
+        console.error('搜索失败:', error);
+        // 提供更具体的错误信息
+        const errorMessage = error.message || '搜索失败，请稍后重试';
+        toast.error(errorMessage);
+        setLoading(false);
+        // 设置空结果集，避免界面显示旧数据
+        setResults([]);
+      });
     }
-  }, [query, sortBy]);
+  }, [query, sortBy, activeFilter]);
 
   // 应用筛选
   const filteredResults = activeFilter 

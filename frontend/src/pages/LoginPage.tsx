@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { AuthContext } from '../contexts/authContext';
 import { useContext } from 'react';
+import { login } from '../lib/api';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // 表单验证
@@ -33,25 +34,20 @@ export default function LoginPage() {
     
     setLoading(true);
     
-    // 模拟登录请求
-    setTimeout(() => {
-      // 这里是模拟登录成功的情况
-      // 实际应用中应该调用真实的API进行身份验证
+    try {
+      // 调用真实的登录API
+      const response = await login({ email, password, rememberMe });
       
       // 设置认证状态
       setIsAuthenticated(true);
       
-      // 如果勾选了"记住我"，可以将用户信息存储在localStorage
-      if (rememberMe) {
-        localStorage.setItem('userEmail', email);
-      } else {
-        localStorage.removeItem('userEmail');
-      }
-      
       toast.success('登录成功！');
       navigate('/'); // 登录成功后重定向到首页
       setLoading(false);
-    }, 1500);
+    } catch (err: any) {
+      toast.error(err.message || '登录失败，请稍后重试');
+      setLoading(false);
+    }
   };
 
   return (

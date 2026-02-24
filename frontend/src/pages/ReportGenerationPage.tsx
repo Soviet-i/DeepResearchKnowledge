@@ -13,7 +13,6 @@ export default function ReportGenerationPage() {
   const [report, setReport] = useState('');
   const [error, setError] = useState('');
   const [progress, setProgress] = useState(0);
-  const [usingMockData, setUsingMockData] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [reportTitle, setReportTitle] = useState('');
   
@@ -179,15 +178,11 @@ export default function ReportGenerationPage() {
           setReport(result);
           setProgress(100);
           setLoading(false);
-          // 如果API返回的内容看起来像模拟数据，设置标记
-          if (result.includes('本报告基于对') && result.includes('篇相关文献的分析')) {
-            setUsingMockData(true);
-            toast.warning('由于API连接问题，当前显示的是模拟数据生成的报告');
-          }
         })
         .catch(err => {
           console.error('生成报告时出错:', err);
-          setError('生成报告时出错，请稍后重试');
+          // 提供更具体的错误信息
+          setError(err.message || '生成报告时出错，请稍后重试');
           setLoading(false);
           clearInterval(progressInterval);
         });
@@ -385,16 +380,8 @@ export default function ReportGenerationPage() {
              </div>
            </div>
          </div>
-        
-        {/* 模拟数据提示 */}
-        {usingMockData && (
-          <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-lg mb-6 flex items-center">
-            <i className="fas fa-info-circle mr-2"></i>
-            <p className="text-sm">当前显示的是模拟数据生成的报告，可能与真实API生成的结果有所不同</p>
-          </div>
-        )}
-        
-        {/* 主要内容区域 - 三栏布局 */}
+          
+          {/* 主要内容区域 - 三栏布局 */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧：选中的参考文献 */}
           <div className="w-full lg:w-1/5">
