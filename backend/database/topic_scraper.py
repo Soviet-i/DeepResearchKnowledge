@@ -1,8 +1,3 @@
-"""
-arXiv 论文爬虫 - 优化版本
-支持关键词搜索、论文下载、智能排序、速率限制处理
-"""
-
 import arxiv
 import requests
 import json
@@ -142,11 +137,11 @@ class ArxivCrawler:
                         self._save_cache()
 
                 except Exception as e:
-                    print(f"\n⚠️  获取论文失败: {e}")
+                    print(f"\n  获取论文失败: {e}")
                     pbar.update(1)
                     continue
 
-        print(f"\n✅ 成功获取 {len(papers)} 篇论文")
+        print(f"\n 成功获取 {len(papers)} 篇论文")
         self._save_cache()
         return papers
 
@@ -237,13 +232,13 @@ class ArxivCrawler:
         Returns:
             排序后的论文列表
         """
-        print("\n📈 正在获取引用数并计算分数...")
-        print(f"💡 提示: 使用缓存加速，新论文需要查询API")
+        print("\n正在获取引用数并计算分数...")
+        print(f" 提示: 使用缓存加速，新论文需要查询API")
 
         # 统计需要查询的论文数
         papers_need_query = [p for p in papers if p['id'] not in self.citation_cache]
         print(
-            f"📊 总论文数: {len(papers)}, 已缓存: {len(papers) - len(papers_need_query)}, 需查询: {len(papers_need_query)}")
+            f" 总论文数: {len(papers)}, 已缓存: {len(papers) - len(papers_need_query)}, 需查询: {len(papers_need_query)}")
 
         # 批量获取引用数（使用线程池，但限制并发数）
         completed = 0
@@ -278,7 +273,7 @@ class ArxivCrawler:
         # 排序
         ranked_papers = sorted(papers, key=lambda x: x['score'], reverse=True)
 
-        print(f"✅ 排序完成，已选出Top {self.max_results}篇论文")
+        print(f" 排序完成，已选出Top {self.max_results}篇论文")
         return ranked_papers[:self.max_results]
 
     def download_pdf(self, paper: Dict) -> bool:
@@ -316,7 +311,7 @@ class ArxivCrawler:
             papers: 论文列表
             max_workers: 并发数
         """
-        print(f"\n📥 开始下载 {len(papers)} 篇论文...")
+        print(f"\n 开始下载 {len(papers)} 篇论文...")
 
         # 检查已下载的论文
         already_downloaded = sum(1 for p in papers
@@ -339,7 +334,7 @@ class ArxivCrawler:
                         success_count += 1
                     pbar.update(1)
 
-        print(f"✅ 成功下载 {success_count}/{len(papers)} 篇论文")
+        print(f" 成功下载 {success_count}/{len(papers)} 篇论文")
 
     def save_metadata(self, papers: List[Dict]):
         """
@@ -348,7 +343,7 @@ class ArxivCrawler:
         Args:
             papers: 论文列表
         """
-        print("\n💾 正在保存元数据...")
+        print("\n 正在保存元数据...")
 
         # 保存为JSON
         json_path = self.metadata_dir / "papers_metadata.json"
@@ -389,7 +384,7 @@ class ArxivCrawler:
                         f'{paper.get("citation_count", 0)},{paper.get("score", 0):.4f},'
                         f'{paper["id"]},{paper["entry_url"]}\n')
 
-        print(f"✅ 元数据已保存至: {self.metadata_dir}")
+        print(f" 元数据已保存至: {self.metadata_dir}")
         print(f"   - JSON: {json_path.name}")
         print(f"   - 文本摘要: {summary_path.name}")
         print(f"   - CSV: {csv_path.name}")
@@ -409,14 +404,14 @@ class ArxivCrawler:
         start_time = time.time()
 
         print("=" * 80)
-        print("🚀 arXiv 论文爬虫启动")
+        print(" arXiv 论文爬虫启动")
         print("=" * 80)
 
         # 1. 搜索论文
         papers = self.search_papers(max_search=initial_search)
 
         if not papers:
-            print("❌ 未找到相关论文")
+            print(" 未找到相关论文")
             return
 
         # 2. 排序筛选
@@ -443,7 +438,7 @@ class ArxivCrawler:
 def main():
     # 参数配置
     KEYWORD = "large language model"
-    SAVE_DIR = "./arxiv_papers"
+    SAVE_DIR = ".arxiv_papers"
     MAX_RESULTS = 100
     INITIAL_SEARCH = 2000
     CITATION_WEIGHT = 0.7
