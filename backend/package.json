@@ -1,0 +1,27 @@
+﻿{
+  "name": "deep-research-backend",
+  "version": "1.0.0",
+  "description": "Backend service for DeepResearchKnowledge",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "lint": "node -e \"console.log('No linter configured')\"",
+    "test:api": "node scripts/run-newman.js",
+    "test:api:ci": "node scripts/run-newman.js --ci",
+    "test:api:newman": "newman run tests/postman/DeepResearchBackend.postman_collection.json -e tests/postman/DeepResearchBackend.local.postman_environment.json"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "uuid": "^11.1.0"
+  }
+}

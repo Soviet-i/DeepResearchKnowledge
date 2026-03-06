@@ -214,3 +214,13 @@ yarn build
 ## 联系我们
 
 如果您在使用过程中遇到任何问题或有任何建议，欢迎联系我们。
+## Backend API Base URL
+
+This frontend supports runtime API base URL via Vite env:
+
+- `VITE_API_BASE_URL` (example: `http://localhost:3001/api`)
+
+Behavior:
+- If `VITE_API_BASE_URL` is set, frontend calls that base URL.
+- If not set and running in dev, it defaults to `http://localhost:3001/api`.
+- If not set and running in production, it defaults to `/api`.
