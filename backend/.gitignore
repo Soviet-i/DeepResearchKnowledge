@@ -1,0 +1,6 @@
+﻿node_modules/
+.npm-cache/
+.env
+storage/*.json
+!storage/.gitkeep
+tests/reports/*.xml
