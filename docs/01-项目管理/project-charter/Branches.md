@@ -8,6 +8,8 @@
 
 │   │   ├── target.md		项目目标
 
+│   │   ├── product.md		阶段产出物
+
 │   │   └── teamwork.md		团队分工
 
 │   ├── milestone.md                 计划
@@ -70,11 +72,11 @@
 
 └── 06-演示与交付/
 
-&nbsp;   ├── demo-script.md               演示脚本
+    ├── demo-script.md               演示脚本
 
-&nbsp;   ├── faq.md                       评委可能问的问题及答案
+    ├── faq.md                       评委可能问的问题及答案
 
-&nbsp;   └── submission-checklist.md      提交前需要检查清单
+    └── submission-checklist.md      提交前需要检查清单
 
 
 
@@ -209,6 +211,4 @@
 低代码平台导出的代码：从我们选定的低代码开发平台（如即时设计、Bubble.io、V0.dev等）中导出的可以直接在浏览器中运行的网页文件
 
 工具脚本：为辅助开发、测试、部署或数据处理而编写的小型程序
-
-
 

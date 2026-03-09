@@ -30,30 +30,32 @@
 
 
 
-bash
+
 
 1\) 克隆仓库（首次）
+```bash
 
 git clone <repo-url>
 
 cd RedSeeker
-
+```
 
 
 2\) 基于 main 创建个人分支（推荐：姓名/模块）
 
+```bash
 git checkout main
 
 git pull
 
 
-
 git checkout -b <name>/<module>
 
-
+```
 
 3\) 提交改动并推送
 
+```bash
 git add .
 
 git commit -m "<module>: 简要描述"
@@ -61,7 +63,7 @@ git commit -m "<module>: 简要描述"
 
 
 git push -u origin <name>/<module>
-
+```
 
 
 
