@@ -9,21 +9,33 @@ REPORT_API_KEY = "app-juZqzwuwgRmaRcitqq8QGCOx"
 REPORT_DEFAULT_QUERY = "什么是RAG？"
 # 报告生成的循环次数上限（max_loop一般大于5，不然智能体可能写不出完整的文献，比如漏写"结论"部分）
 REPORT_LOOP_NUM = 10
+# 报告生成时使用的 PDF 列表：从 pdf_database/pdf_data.json 中按 pdf_id 选取，写入 input/test.json
+PDF_IDS = [
+    "23e5d100-fd78-447e-afd8-edd50e44196b",
+    "0eab7c47-e3c0-439c-907d-3aed554cc7c5",
+    # "b738aaa0-d803-4b0f-a1e6-981c7eeae5ea",
+    # "8583b930-523d-430b-b187-10fddd8d81bc",
+    # "ad009669-337b-4982-acfa-873b37ee71c7",
+    # "c4c8a8c6-021a-4159-953a-bb76846a66d4",
+]
 
-# PDF 总结
-# 智能体 API Key
+# PDF 上传
+# PDF 总结摘要 API Key
 PDF_API_KEY = "app-VaXWLYnGf6Bki5w4RDirHikD"
 # PDF 总结提问
 PDF_DEFAULT_QUERY = "请总结这些文献的内容。"
 # 文件列表：每项为本地PDF路径或已上传的file_id。支持批量处理。
 PDF_FILE_LIST = [
-    "ad009669-337b-4982-acfa-873b37ee71c7",
-    "c4c8a8c6-021a-4159-953a-bb76846a66d4",
+    r"D:\233\zotero_notes\storage\9L6TQRPA\Li 等 - 2025 - DeepAgent A General Reasoning Agent with Scalable Toolsets.pdf",
+    r"D:\233\zotero_notes\storage\RUAKSCG8\Chen 等 - 2024 - Plan-on-Graph Self-Correcting Adaptive Planning of Large Language Model on Knowledge Graphs.pdf",
+    r"D:\MR\Desktop\PPoGA.pdf",
+
+    # "ad009669-337b-4982-acfa-873b37ee71c7",
+    # "c4c8a8c6-021a-4159-953a-bb76846a66d4",
 ]
 # 若要从本地路径上传，可改为例如：
 # PDF_FILE_LIST = [
-#     r"D:\MR\Desktop\科研文件\TestPDF.pdf",
-#     r"D:\MR\Desktop\科研文件\TestPDF2.pdf",
+#     r"D:\MR\Desktop\科研文件\NeurIPS 2025 - WebThinker- Empowering Large Reasoning Models with Deep Research Capability.pdf"
 # ]
 
 # 文件变量的键名，需与智能体的键名一致，先不要修改这个。
@@ -72,6 +84,10 @@ data = {
 }
 
 # （主要给 test_PDF.py 使用）
+DEFAULT_PDF_IDS = [
+    "ad009669-337b-4982-acfa-873b37ee71c7",
+    "c4c8a8c6-021a-4159-953a-bb76846a66d4",
+]
 pdf_chat_url = ONLINE_PDF_CHAT_URL
 pdf_upload_url = ONLINE_PDF_UPLOAD_URL
 pdf_api_key = PDF_API_KEY
