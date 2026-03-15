@@ -4,7 +4,7 @@
 ### 根据多篇论文生成综述
 python test.py
 ### PDF预处理
-python test_PDF.py
+python upload_PDF.py
 # 详细说明
 1. 综述生成程序会从pdf_data.json中选取数篇论文(可在config.py中修改)，整合到test.json中发送给智能体。运行后，会在ouput目录下生成.md报告。(报告是流式生成的，模型输出会实时追加到报告中)
 2. PDF预处理运行后，会修改pdf_database目录下的pdf_data.json文件，将新的pdf摘要记录在.json数据库中(综述生成会用到)
